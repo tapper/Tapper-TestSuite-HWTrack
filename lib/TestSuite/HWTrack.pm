@@ -13,19 +13,25 @@ Version 0.01
 
 =cut
 
-our $VERSION = '0.01';
-
+        package TestSuite::HWTrack;
+        our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
 
-Perhaps a little code snippet.
+HWTrack calls the tool lshw, parses its input and sends it to the report
+framework. HWTrack offers a object orientated interface. Error handling is
+implemented using Artemis::Exception.
 
-    use TestSuite::HWTrack;
-
-    my $foo = TestSuite::HWTrack->new();
-    ...
+  use TestSuite::HWTrack;
+  use TryCatch;
+  my $config = {report_server => 'bancroft', report_port => 7357};
+  my $track = TestSuite::HWTrack($config);
+  try {
+      my $success = $track->run();
+  } catch ($exception) {
+        die $exception->msg();
+  }
 
 =head1 EXPORT
 
@@ -34,19 +40,13 @@ if you don't export anything, such as for a purely object-oriented module.
 
 =head1 FUNCTIONS
 
-=head2 function1
+=head2
 
 =cut
 
-sub function1 {
-}
+#sub prepare { shift; TestSuite::HWTrack::Prepare->new->prepare(@_) }
 
-=head2 function2
 
-=cut
-
-sub function2 {
-}
 
 =head1 AUTHOR
 
@@ -68,29 +68,6 @@ You can find documentation for this module with the perldoc command.
     perldoc TestSuite::HWTrack
 
 
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=TestSuite-HWTrack>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/TestSuite-HWTrack>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/TestSuite-HWTrack>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/TestSuite-HWTrack/>
-
-=back
-
-
 =head1 ACKNOWLEDGEMENTS
 
 
@@ -102,5 +79,5 @@ This program is released under the following license: Restricted
 
 
 =cut
-
+}
 1; # End of TestSuite::HWTrack
