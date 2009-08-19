@@ -1,0 +1,8 @@
+#!/usr/bin/env perl
+
+use TestSuite::HWTrack;
+
+my $track = TestSuite::HWTrack->new();
+$track->install();
+$track->generate();
+$track->send();
