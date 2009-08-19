@@ -1,11 +1,19 @@
-package TestSuite::HWTrack;
+use MooseX::Declare;
+use 5.010;
 
-use warnings;
-use strict;
+class TestSuite::HWTrack {
+        use aliased 'TestSuite::HWTrack::Prepare';
+        use aliased 'TestSuite::HWTrack::Execute';
+        has 'prep' => ( is => 'ro', isa => Prepare, handles => [qw( install )],       default => sub { Prepare->new }, );
+        has 'exec' => ( is => 'ro', isa => Execute, handles => [qw( generate send )], default => sub { Execute->new }, );
+}
+
+
+{
 
 =head1 NAME
 
-TestSuite::HWTrack - The great new TestSuite::HWTrack!
+TestSuite::HWTrack - Keep track of actual hardware in test machine
 
 =head1 VERSION
 
