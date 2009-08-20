@@ -160,7 +160,9 @@ C_FILES  =
 O_FILES  = 
 H_FILES  = 
 MAN1PODS = 
-MAN3PODS = lib/TestSuite/HWTrack.pm
+MAN3PODS = lib/TestSuite/HWTrack.pm \
+	lib/TestSuite/HWTrack/Execute.pm \
+	lib/TestSuite/HWTrack/Prepare.pm
 
 # Where is the Config information that we are using/depend on
 CONFIGDEP = $(PERL_ARCHLIB)$(DFSEP)Config.pm $(PERL_INC)$(DFSEP)config.h
@@ -182,10 +184,520 @@ PERL_ARCHIVE       =
 PERL_ARCHIVE_AFTER = 
 
 
-TO_INST_PM = lib/TestSuite/HWTrack.pm
+TO_INST_PM = lib/TestSuite/HWTrack.pm \
+	lib/TestSuite/HWTrack/Execute.pm \
+	lib/TestSuite/HWTrack/Prepare.pm \
+	lib/auto/TestSuite/HWTrack/lshw/.version \
+	lib/auto/TestSuite/HWTrack/lshw/COPYING \
+	lib/auto/TestSuite/HWTrack/lshw/Makefile \
+	lib/auto/TestSuite/HWTrack/lshw/README \
+	lib/auto/TestSuite/HWTrack/lshw/docs/Changelog \
+	lib/auto/TestSuite/HWTrack/lshw/docs/IODC.txt \
+	lib/auto/TestSuite/HWTrack/lshw/docs/TODO \
+	lib/auto/TestSuite/HWTrack/lshw/docs/lshw.xsd \
+	lib/auto/TestSuite/HWTrack/lshw/docs/proc_usb_info.txt \
+	lib/auto/TestSuite/HWTrack/lshw/lshw.spec \
+	lib/auto/TestSuite/HWTrack/lshw/src/Makefile \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/Makefile \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/abi.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/abi.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/blockio.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/blockio.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/burner.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/burner.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cdrom.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cdrom.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/config.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cpufreq.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cpufreq.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cpuid.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cpuid.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cpuinfo.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cpuinfo.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/device-tree.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/device-tree.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/disk.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/disk.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/display.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/display.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/dmi.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/dmi.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/fb.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/fb.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/heuristics.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/heuristics.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/hw.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/hw.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/ide.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/ide.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/ideraid.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/ideraid.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/isapnp.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/isapnp.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/lvm.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/lvm.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/main.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/main.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/mem.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/mem.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/mounts.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/mounts.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/network.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/network.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/options.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/options.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/osutils.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/osutils.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/parisc.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/parisc.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/partitions.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/partitions.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pci.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pci.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia-legacy.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia-legacy.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pnp.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pnp.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/print.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/print.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/scsi.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/scsi.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/smp.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/smp.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/spd.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/spd.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/sysfs.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/sysfs.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/usb.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/usb.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/version.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/version.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/volumes.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/volumes.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/Makefile \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/amd.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/audio.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/battery.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/bluetooth.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/board.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cd.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/chip.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cloud.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cpu.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/desktopcomputer.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/disabled.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/disc.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/display.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/emac.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/firewire.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/intel.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/laptop.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/logo.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/md.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/memory.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/mini.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/modem.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/motherboard.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/network.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/32.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/64.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/alpha.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/amd.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/emac.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/intel.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/mini.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/mips.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/parisc.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powermac.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powermacg5.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powerpc.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/sparc.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/parallel.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powermac.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powermacg5.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powerpc.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/printer.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/question.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/radio.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/scsi.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/serial.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/tablet.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/towercomputer.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/usb.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/wifi.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/callbacks.c \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/callbacks.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/engine.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/engine.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.c \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.glade \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.gladep \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/console.apps \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/gtk-lshw.desktop \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/gtk-lshw.pam \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/interface.c \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/interface.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/print-gui.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/print-gui.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/stock.c \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/stock.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/support.c \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/support.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/jedec.ods \
+	lib/auto/TestSuite/HWTrack/lshw/src/lshw.1 \
+	lib/auto/TestSuite/HWTrack/lshw/src/lshw.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/lshw.sgml \
+	lib/auto/TestSuite/HWTrack/lshw/src/lshw.spec.in \
+	lib/auto/TestSuite/HWTrack/lshw/src/mac-prefixes \
+	lib/auto/TestSuite/HWTrack/lshw/src/manuf.txt \
+	lib/auto/TestSuite/HWTrack/lshw/src/oui.txt \
+	lib/auto/TestSuite/HWTrack/lshw/src/pci.ids \
+	lib/auto/TestSuite/HWTrack/lshw/src/usb.ids
 
-PM_TO_BLIB = lib/TestSuite/HWTrack.pm \
-	blib/lib/TestSuite/HWTrack.pm
+PM_TO_BLIB = lib/auto/TestSuite/HWTrack/lshw/src/gui/print-gui.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/print-gui.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cpuinfo.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cpuinfo.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/heuristics.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/heuristics.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/lshw.spec.in \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/lshw.spec.in \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/volumes.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/volumes.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/version.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/version.h \
+	lib/auto/TestSuite/HWTrack/lshw/docs/proc_usb_info.txt \
+	blib/lib/auto/TestSuite/HWTrack/lshw/docs/proc_usb_info.txt \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/scsi.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/scsi.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/hw.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/hw.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/config.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/config.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia-legacy.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia-legacy.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pci.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pci.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/display.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/display.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/main.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/main.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/support.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/support.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/interface.c \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/interface.c \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia-legacy.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia-legacy.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powerpc.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powerpc.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/64.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/64.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/chip.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/chip.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/usb.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/usb.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/partitions.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/partitions.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/parisc.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/parisc.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/scsi.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/scsi.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/manuf.txt \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/manuf.txt \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/print-gui.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/print-gui.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/ide.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/ide.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/disk.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/disk.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/lshw.1 \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/lshw.1 \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/sparc.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/sparc.svg \
+	lib/auto/TestSuite/HWTrack/lshw/README \
+	blib/lib/auto/TestSuite/HWTrack/lshw/README \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/parisc.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/parisc.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/usb.ids \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/usb.ids \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/alpha.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/alpha.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/isapnp.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/isapnp.cc \
+	lib/TestSuite/HWTrack/Prepare.pm \
+	blib/lib/TestSuite/HWTrack/Prepare.pm \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/firewire.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/firewire.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/mini.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/mini.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powermacg5.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powermacg5.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/device-tree.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/device-tree.cc \
+	lib/auto/TestSuite/HWTrack/lshw/lshw.spec \
+	blib/lib/auto/TestSuite/HWTrack/lshw/lshw.spec \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pnp.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pnp.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pci.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pci.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/tablet.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/tablet.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/intel.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/intel.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powermacg5.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powermacg5.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/network.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/network.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/spd.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/spd.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/abi.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/abi.cc \
+	lib/auto/TestSuite/HWTrack/lshw/docs/lshw.xsd \
+	blib/lib/auto/TestSuite/HWTrack/lshw/docs/lshw.xsd \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/device-tree.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/device-tree.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/dmi.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/dmi.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/smp.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/smp.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/parisc.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/parisc.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cloud.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cloud.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/smp.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/smp.cc \
+	lib/TestSuite/HWTrack.pm \
+	blib/lib/TestSuite/HWTrack.pm \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/towercomputer.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/towercomputer.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/stock.c \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/stock.c \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/engine.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/engine.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/jedec.ods \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/jedec.ods \
+	lib/TestSuite/HWTrack/Execute.pm \
+	blib/lib/TestSuite/HWTrack/Execute.pm \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/lvm.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/lvm.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/console.apps \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/console.apps \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/display.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/display.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/usb.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/usb.svg \
+	lib/auto/TestSuite/HWTrack/lshw/docs/IODC.txt \
+	blib/lib/auto/TestSuite/HWTrack/lshw/docs/IODC.txt \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/blockio.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/blockio.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/amd.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/amd.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.gladep \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.gladep \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/scsi.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/scsi.h \
+	lib/auto/TestSuite/HWTrack/lshw/docs/TODO \
+	blib/lib/auto/TestSuite/HWTrack/lshw/docs/TODO \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/pnp.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pnp.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powermac.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powermac.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/logo.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/logo.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/lvm.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/lvm.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/wifi.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/wifi.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/ide.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/ide.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powerpc.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powerpc.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cpufreq.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cpufreq.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/desktopcomputer.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/desktopcomputer.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/radio.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/radio.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/serial.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/serial.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cpuid.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cpuid.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/blockio.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/blockio.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/32.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/32.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/dmi.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/dmi.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/burner.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/burner.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/board.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/board.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/usb.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/usb.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/pci.ids \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/pci.ids \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/mips.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/mips.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cpuid.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cpuid.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/abi.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/abi.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/osutils.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/osutils.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/mounts.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/mounts.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/stock.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/stock.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/oui.txt \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/oui.txt \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/options.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/options.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/isapnp.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/isapnp.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/Makefile \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/Makefile \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/sysfs.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/sysfs.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/mounts.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/mounts.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/question.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/question.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/motherboard.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/motherboard.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powermac.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powermac.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/spd.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/spd.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/mem.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/mem.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/ideraid.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/ideraid.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/modem.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/modem.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/burner.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/burner.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/intel.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/intel.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cd.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cd.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/fb.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/fb.h \
+	lib/auto/TestSuite/HWTrack/lshw/COPYING \
+	blib/lib/auto/TestSuite/HWTrack/lshw/COPYING \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/display.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/display.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/callbacks.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/callbacks.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/interface.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/interface.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/battery.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/battery.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/sysfs.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/sysfs.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/gtk-lshw.pam \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/gtk-lshw.pam \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/emac.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/emac.svg \
+	lib/auto/TestSuite/HWTrack/lshw/docs/Changelog \
+	blib/lib/auto/TestSuite/HWTrack/lshw/docs/Changelog \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/gtk-lshw.desktop \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/gtk-lshw.desktop \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/parallel.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/parallel.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cpufreq.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cpufreq.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/disk.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/disk.h \
+	lib/auto/TestSuite/HWTrack/lshw/.version \
+	blib/lib/auto/TestSuite/HWTrack/lshw/.version \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/osutils.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/osutils.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/fb.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/fb.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/printer.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/printer.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/ideraid.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/ideraid.h \
+	lib/auto/TestSuite/HWTrack/lshw/Makefile \
+	blib/lib/auto/TestSuite/HWTrack/lshw/Makefile \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/network.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/network.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/mem.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/mem.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/network.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/network.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.c \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.c \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/bluetooth.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/bluetooth.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/emac.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/emac.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/mini.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/mini.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/audio.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/audio.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/main.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/main.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/hw.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/hw.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/print.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/print.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/memory.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/memory.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cdrom.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cdrom.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/callbacks.c \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/callbacks.c \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cpuinfo.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cpuinfo.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/heuristics.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/heuristics.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/print.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/print.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.glade \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.glade \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cpu.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cpu.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/amd.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/amd.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/support.c \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/support.c \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/md.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/md.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/mac-prefixes \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/mac-prefixes \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/options.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/options.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/lshw.sgml \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/lshw.sgml \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/partitions.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/partitions.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/volumes.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/volumes.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/Makefile \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/Makefile \
+	lib/auto/TestSuite/HWTrack/lshw/src/lshw.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/lshw.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/version.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/version.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/Makefile \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/Makefile \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/disc.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/disc.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/laptop.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/laptop.svg \
+	lib/auto/TestSuite/HWTrack/lshw/src/core/cdrom.h \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cdrom.h \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/engine.cc \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/engine.cc \
+	lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/disabled.svg \
+	blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/disabled.svg
 
 
 # --- MakeMaker platform_constants section:
@@ -405,9 +917,13 @@ POD2MAN = $(POD2MAN_EXE)
 
 
 manifypods : pure_all  \
-	lib/TestSuite/HWTrack.pm
+	lib/TestSuite/HWTrack/Execute.pm \
+	lib/TestSuite/HWTrack.pm \
+	lib/TestSuite/HWTrack/Prepare.pm
 	$(NOECHO) $(POD2MAN) --section=3 --perm_rw=$(PERM_RW) \
-	  lib/TestSuite/HWTrack.pm $(INST_MAN3DIR)/TestSuite::HWTrack.$(MAN3EXT) 
+	  lib/TestSuite/HWTrack/Execute.pm $(INST_MAN3DIR)/TestSuite::HWTrack::Execute.$(MAN3EXT) \
+	  lib/TestSuite/HWTrack.pm $(INST_MAN3DIR)/TestSuite::HWTrack.$(MAN3EXT) \
+	  lib/TestSuite/HWTrack/Prepare.pm $(INST_MAN3DIR)/TestSuite::HWTrack::Prepare.$(MAN3EXT) 
 
 
 
@@ -474,7 +990,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '--- #YAML:1.0' > META_new.yml
 	$(NOECHO) $(ECHO) 'name:               TestSuite-HWTrack' >> META_new.yml
 	$(NOECHO) $(ECHO) 'version:            0.01' >> META_new.yml
-	$(NOECHO) $(ECHO) 'abstract:           The great new TestSuite::HWTrack!' >> META_new.yml
+	$(NOECHO) $(ECHO) 'abstract:           Keep track of actual hardware in test machine' >> META_new.yml
 	$(NOECHO) $(ECHO) 'author:' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - OSRC SysInt Team <osrc-sysint@elbe.amd.com>' >> META_new.yml
 	$(NOECHO) $(ECHO) 'license:            Restricted' >> META_new.yml
@@ -785,7 +1301,7 @@ testdb_static :: testdb_dynamic
 ppd :
 	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="0,01,0,0">' > $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <TITLE>$(DISTNAME)</TITLE>' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '    <ABSTRACT>The great new TestSuite::HWTrack!</ABSTRACT>' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '    <ABSTRACT>Keep track of actual hardware in test machine</ABSTRACT>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>OSRC SysInt Team &lt;osrc-sysint@elbe.amd.com&gt;</AUTHOR>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <DEPENDENCY NAME="Test-More" VERSION="0,0,0,0" />' >> $(DISTNAME).ppd
@@ -800,7 +1316,177 @@ ppd :
 
 pm_to_blib : $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', '\''$(PM_FILTER)'\'')' -- \
-	  lib/TestSuite/HWTrack.pm blib/lib/TestSuite/HWTrack.pm 
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/print-gui.h blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/print-gui.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/cpuinfo.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cpuinfo.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/heuristics.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/heuristics.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/lshw.spec.in blib/lib/auto/TestSuite/HWTrack/lshw/src/lshw.spec.in \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/volumes.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/volumes.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/version.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/version.h \
+	  lib/auto/TestSuite/HWTrack/lshw/docs/proc_usb_info.txt blib/lib/auto/TestSuite/HWTrack/lshw/docs/proc_usb_info.txt \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/scsi.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/scsi.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/hw.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/hw.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/config.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/config.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia-legacy.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia-legacy.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/pci.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pci.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/display.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/display.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/main.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/main.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/support.h blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/support.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/interface.c blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/interface.c \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia-legacy.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia-legacy.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powerpc.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powerpc.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/64.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/64.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/chip.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/chip.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/usb.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/usb.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/partitions.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/partitions.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/parisc.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/parisc.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/scsi.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/scsi.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/manuf.txt blib/lib/auto/TestSuite/HWTrack/lshw/src/manuf.txt \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/print-gui.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/print-gui.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/ide.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/ide.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/disk.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/disk.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/lshw.1 blib/lib/auto/TestSuite/HWTrack/lshw/src/lshw.1 \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/sparc.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/sparc.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/README blib/lib/auto/TestSuite/HWTrack/lshw/README \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/parisc.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/parisc.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/usb.ids blib/lib/auto/TestSuite/HWTrack/lshw/src/usb.ids \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/alpha.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/alpha.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/isapnp.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/isapnp.cc \
+	  lib/TestSuite/HWTrack/Prepare.pm blib/lib/TestSuite/HWTrack/Prepare.pm \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/firewire.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/firewire.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/mini.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/mini.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powermacg5.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powermacg5.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/device-tree.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/device-tree.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/lshw.spec blib/lib/auto/TestSuite/HWTrack/lshw/lshw.spec \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/pnp.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pnp.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/pci.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pci.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/tablet.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/tablet.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/intel.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/intel.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pcmcia.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powermacg5.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powermacg5.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/network.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/network.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/spd.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/spd.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/abi.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/abi.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/docs/lshw.xsd blib/lib/auto/TestSuite/HWTrack/lshw/docs/lshw.xsd \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/device-tree.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/device-tree.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/dmi.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/dmi.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/smp.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/smp.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/parisc.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/parisc.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cloud.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cloud.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/smp.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/smp.cc \
+	  lib/TestSuite/HWTrack.pm blib/lib/TestSuite/HWTrack.pm \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/towercomputer.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/towercomputer.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/stock.c blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/stock.c \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/engine.h blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/engine.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/jedec.ods blib/lib/auto/TestSuite/HWTrack/lshw/src/jedec.ods \
+	  lib/TestSuite/HWTrack/Execute.pm blib/lib/TestSuite/HWTrack/Execute.pm \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/lvm.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/lvm.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/console.apps blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/console.apps \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/display.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/display.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/usb.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/usb.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/docs/IODC.txt blib/lib/auto/TestSuite/HWTrack/lshw/docs/IODC.txt \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/blockio.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/blockio.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/amd.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/amd.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.gladep blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.gladep \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/scsi.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/scsi.h \
+	  lib/auto/TestSuite/HWTrack/lshw/docs/TODO blib/lib/auto/TestSuite/HWTrack/lshw/docs/TODO \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/pnp.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/pnp.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powermac.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/powermac.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/logo.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/logo.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/lvm.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/lvm.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/wifi.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/wifi.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/ide.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/ide.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powerpc.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powerpc.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/cpufreq.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cpufreq.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/desktopcomputer.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/desktopcomputer.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/radio.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/radio.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/serial.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/serial.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/cpuid.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cpuid.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/blockio.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/blockio.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/32.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/32.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/dmi.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/dmi.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/burner.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/burner.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/board.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/board.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/usb.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/usb.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/pci.ids blib/lib/auto/TestSuite/HWTrack/lshw/src/pci.ids \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/mips.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/mips.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/cpuid.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cpuid.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/abi.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/abi.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/osutils.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/osutils.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/mounts.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/mounts.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/stock.h blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/stock.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/oui.txt blib/lib/auto/TestSuite/HWTrack/lshw/src/oui.txt \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/options.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/options.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/isapnp.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/isapnp.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/Makefile blib/lib/auto/TestSuite/HWTrack/lshw/src/core/Makefile \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/sysfs.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/sysfs.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/mounts.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/mounts.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/question.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/question.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/motherboard.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/motherboard.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powermac.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/powermac.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/spd.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/spd.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/mem.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/mem.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/ideraid.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/ideraid.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/modem.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/modem.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/burner.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/burner.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/intel.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/intel.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cd.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cd.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/fb.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/fb.h \
+	  lib/auto/TestSuite/HWTrack/lshw/COPYING blib/lib/auto/TestSuite/HWTrack/lshw/COPYING \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/display.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/display.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/callbacks.h blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/callbacks.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/interface.h blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/interface.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/battery.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/battery.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/sysfs.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/sysfs.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/gtk-lshw.pam blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/gtk-lshw.pam \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/emac.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/emac.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/docs/Changelog blib/lib/auto/TestSuite/HWTrack/lshw/docs/Changelog \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/gtk-lshw.desktop blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/integration/gtk-lshw.desktop \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/parallel.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/parallel.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/cpufreq.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cpufreq.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/disk.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/disk.h \
+	  lib/auto/TestSuite/HWTrack/lshw/.version blib/lib/auto/TestSuite/HWTrack/lshw/.version \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/osutils.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/osutils.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/fb.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/fb.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/printer.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/printer.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/ideraid.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/ideraid.h \
+	  lib/auto/TestSuite/HWTrack/lshw/Makefile blib/lib/auto/TestSuite/HWTrack/lshw/Makefile \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/network.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/network.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/mem.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/mem.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/network.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/network.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.c blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.c \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/bluetooth.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/bluetooth.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/emac.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/emac.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/mini.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/nologo/mini.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/audio.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/audio.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/main.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/main.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/hw.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/hw.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/print.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/print.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/memory.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/memory.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/cdrom.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cdrom.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/callbacks.c blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/callbacks.c \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/cpuinfo.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cpuinfo.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/heuristics.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/heuristics.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/print.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/print.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.glade blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/gtk-lshw.glade \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cpu.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/cpu.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/amd.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/amd.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/support.c blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/support.c \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/md.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/md.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/mac-prefixes blib/lib/auto/TestSuite/HWTrack/lshw/src/mac-prefixes \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/options.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/options.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/lshw.sgml blib/lib/auto/TestSuite/HWTrack/lshw/src/lshw.sgml \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/partitions.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/partitions.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/volumes.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/volumes.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/Makefile blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/Makefile \
+	  lib/auto/TestSuite/HWTrack/lshw/src/lshw.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/lshw.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/version.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/core/version.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/Makefile blib/lib/auto/TestSuite/HWTrack/lshw/src/Makefile \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/disc.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/disc.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/laptop.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/laptop.svg \
+	  lib/auto/TestSuite/HWTrack/lshw/src/core/cdrom.h blib/lib/auto/TestSuite/HWTrack/lshw/src/core/cdrom.h \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/engine.cc blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/engine.cc \
+	  lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/disabled.svg blib/lib/auto/TestSuite/HWTrack/lshw/src/gui/artwork/disabled.svg 
 	$(NOECHO) $(TOUCH) pm_to_blib
 
 
