@@ -6,10 +6,8 @@ class TestSuite::HWTrack::Prepare {
         use File::ShareDir 'module_dir';
         use File::Temp     'tempdir';
 
-        use Data::Dumper;    #enable data-dumper for debugging/data structure 
-
         has src       => ( is => 'rw', default => sub { module_dir('TestSuite::HWTrack')."/lshw" } );
-        has dst       => ( is => 'rw', default => sub { tempdir( CLEANUP => 1 ) } );
+        has dst       => ( is => 'rw', default => sub { tempdir( CLEANUP => 0 ) } );
         has exitcode  => ( is => 'rw', );
         has starttime => ( is => 'rw', );
 
