@@ -16,6 +16,26 @@ class TestSuite::HWTrack::Execute {
                 system($exec);
         }
 
+        method gen_report(HashRef $cfg) {
+                my $xml  = XML::Simple->new(ForceArray => 1);
+                my $data = $xml->XMLin($self->output);
+                my $yaml = Dump($data);
+                $yaml   .= "...\n";
+                $yaml =~ s/^(.*)$/  $1/mg;  # indent
+                my $report = sprintf("
+TAP Version 13
+1..2
+# Artemis-Reportgroup-Testrun: %s
+# Artemis-Suite-Name: HWTrack
+# Artemis-Suite-Version: %s
+ok 1 - Getting hardware information
+%s
+ok 2 - Sending
+", $cfg->{test_run}, $TestSuite::HWTrack::VERSION, $yaml);
+                return $report;
+        }
+
+
         method send() {
         }
 
