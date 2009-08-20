@@ -37,6 +37,24 @@ ok 2 - Sending
 
 
         method send() {
+                my $cfg;
+                $cfg->{test_run}        = $ENV{ARTEMIS_TESTRUN};
+                $cfg->{report_server}   = $ENV{ARTEMIS_REPORT_SERVER};
+                $cfg->{report_api_port} = $ENV{ARTEMIS_REPORT_API_PORT} || 7358;
+                $cfg->{report_port}     = $ENV{ARTEMIS_REPORT_PORT} || 7357;
+
+                # following options are not yet used in this class
+                $cfg->{mcp_server}      = $ENV{ARTEMIS_SERVER};
+                $cfg->{runtime}         = $ENV{ARTEMIS_TS_RUNTIME};
+                $cfg->{hostname}        = $ENV{ARTEMIS_HOSTNAME};
+
+                my $sock = IO::Socket::INET->new(PeerAddr => $cfg->{report_server},
+                                                 PeerPort => $cfg->{report_port},
+                                                 Proto    => 'tcp');
+                unless ($sock) { die "Can't open connection to ", $cfg->{report_server}, ":$!" }
+                $sock->print($self->gen_report($cfg));
+                $sock->close;
+                return 0;
         }
 
 }
