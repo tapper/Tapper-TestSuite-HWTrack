@@ -2,7 +2,18 @@ use MooseX::Declare;
 use 5.010;
 
 class TestSuite::HWTrack::Execute {
+        use File::Temp 'tempfile';
+        use XML::Simple;
+        use YAML;
+        use IO::Socket::INET;
+
+        has output => ( is => 'rw', default => sub { my $file; (undef, $file) = tempfile( CLEANUP => 1 ); return $file} );
+        has dst    => ( is => 'rw');
+
         method generate() {
+                my $lshw = $self->dst."/src/lshw";
+                my $exec = "$lshw -xml > ".$self->output;
+                system($exec);
         }
 
         method send() {
