@@ -6,6 +6,11 @@ class TestSuite::HWTrack {
         use aliased 'TestSuite::HWTrack::Execute';
         has 'prep' => ( is => 'ro', isa => Prepare, handles => [qw( install )],       default => sub { Prepare->new }, );
         has 'exec' => ( is => 'ro', isa => Execute, handles => [qw( generate send )], default => sub { Execute->new }, );
+
+        method BUILD
+        {
+                $self->exec->dst($self->prep->dst);
+        }
 }
 
 
