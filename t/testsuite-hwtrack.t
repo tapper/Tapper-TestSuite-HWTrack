@@ -8,7 +8,6 @@ use Test::More tests => 6;
 use Artemis::Config;
 use TAP::DOM;
 use Data::DPath 'dpath';
-use Data::Dumper;
 
 
 BEGIN {use_ok('TestSuite::HWTrack');}
