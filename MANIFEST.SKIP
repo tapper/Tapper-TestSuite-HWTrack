@@ -1,0 +1,9 @@
+TestSuite-HWTrack-*.*.tar.gz
+^TestSuite-HWTrack-*.*$
+_build
+blib
+^Makefile$
+MANIFEST.bak
+.gitignore
+.cvsignore
+
