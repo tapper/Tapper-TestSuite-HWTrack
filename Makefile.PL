@@ -15,6 +15,7 @@ requires 'YAML';
 requires 'IO::Socket::INET';
 requires 'File::ShareDir';
 requires 'File::Temp';
+requires 'MooseX::Declare'       => 0.27;
 
 build_requires 'Data::DPath';
 build_requires 'Test::More';
