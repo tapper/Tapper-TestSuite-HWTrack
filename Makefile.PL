@@ -17,7 +17,7 @@ requires 'File::ShareDir';
 requires 'File::Temp';
 requires 'MooseX::Declare'       => 0.27;
 
-build_requires 'Data::DPath';
+build_requires 'Data::DPath'     => 0.17;
 build_requires 'Test::More';
 build_requires 'Artemis::Config';
 build_requires 'TAP::DOM';
