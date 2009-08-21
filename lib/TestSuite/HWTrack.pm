@@ -88,7 +88,7 @@ You can find documentation for this module with the perldoc command.
 
 Copyright 2009 OSRC SysInt Team, all rights reserved.
 
-This program is released under the following license: Restricted
+This program is released under the following license: restrictive / proprietary
 
 
 =cut
