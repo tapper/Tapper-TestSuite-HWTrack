@@ -1,7 +1,7 @@
 use MooseX::Declare;
 use 5.010;
 
-class TestSuite::HWTrack::Prepare {
+class TestSuite::HWTrack::Prepare extends Artemis::Base {
 
         use File::ShareDir 'module_dir';
         use File::Temp     'tempdir';
@@ -15,8 +15,12 @@ class TestSuite::HWTrack::Prepare {
         {
                 my $src = $self->src;
                 my $dst = $self->dst;
-                system("rsync -a $src/ $dst/");
-                system("cd $dst; make ");
+                my ($error, $msg);
+                ($error, $msg) = $self->log_and_exec("rsync -a $src/ $dst/");
+                $self->log->logdie($msg) if $error;
+
+                ($error, $msg) = $self->log_and_exec("cd $dst; make ");
+                $self->log->logdie($msg) if $error;
         }
 
 }
