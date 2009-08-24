@@ -13,7 +13,9 @@ class TestSuite::HWTrack::Execute {
         method generate() {
                 my $lshw = $self->dst."/src/lshw";
                 my $exec = "$lshw -xml > ".$self->output;
-                system($exec);
+                system($exec); # can't use Artemis::Base->log_and_exec since
+                               # this puts STDERR into the resulting XML file
+                               # which in turn becomes invalid XML
         }
 
         method gen_report(HashRef $cfg) {
