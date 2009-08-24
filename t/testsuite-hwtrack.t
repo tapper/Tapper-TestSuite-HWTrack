@@ -4,6 +4,15 @@ use 5.010;
 use warnings;
 use strict;
 
+use Log::Log4perl;
+
+my $string = "
+log4perl.rootLogger           = INFO, root
+log4perl.appender.root        = Log::Log4perl::Appender::Screen
+log4perl.appender.root.stderr = 1
+log4perl.appender.root.layout = SimpleLayout";
+Log::Log4perl->init(\$string);
+
 use Test::More tests => 6;
 use Artemis::Config;
 use TAP::DOM;
