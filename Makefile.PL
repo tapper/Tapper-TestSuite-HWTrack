@@ -8,6 +8,7 @@ all_from 'lib/TestSuite/HWTrack.pm';
 author   'OSRC SysInt Team <osrc-sysint@elbe.amd.com>';
 
 requires 'perl'                  => 5.010;
+install_script 'artemis-testsuite-hwtrack';
 
 requires 'File::Temp';
 requires 'XML::Simple';
