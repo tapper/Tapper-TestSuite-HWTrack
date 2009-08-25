@@ -1,6 +1,13 @@
 #!/opt/artemis/bin/perl
 
 use TestSuite::HWTrack;
+use Log::Log4perl;
+
+my $string = "
+log4perl.rootLogger                               = INFO, root
+log4perl.appender.root                            = Log::Log4perl::Appender::Screen
+log4perl.appender.root.layout                     = SimpleLayout";
+Log::Log4perl->init(\$string);
 
 my $track = TestSuite::HWTrack->new();
 $track->install();
