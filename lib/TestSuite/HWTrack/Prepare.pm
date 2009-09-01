@@ -11,16 +11,22 @@ class TestSuite::HWTrack::Prepare extends Artemis::Base {
         has exitcode  => ( is => 'rw', );
         has starttime => ( is => 'rw', );
 
+
+        # Prepare lshw executable
+        #
+        # @return success - 0
+        # @return error   - error string
         method install
         {
                 my $src = $self->src;
                 my $dst = $self->dst;
                 my ($error, $msg);
                 ($error, $msg) = $self->log_and_exec("rsync -a $src/ $dst/");
-                $self->log->logdie($msg) if $error;
+                return $msg if $error;
 
                 ($error, $msg) = $self->log_and_exec("cd $dst; make ");
-                $self->log->logdie($msg) if $error;
+                return $msg if $error;
+                return 0;
         }
 
 }
