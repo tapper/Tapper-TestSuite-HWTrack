@@ -7,12 +7,12 @@ class TestSuite::HWTrack::Execute {
         use YAML;
         use IO::Socket::INET;
 
-        has output => ( is => 'rw', default => sub { my $file; (undef, $file) = tempfile( CLEANUP => 1 ); return $file} );
         has dst    => ( is => 'rw');
 
         method generate() {
+                my (undef, $file) = tempfile( CLEANUP => 1 );
                 my $lshw = $self->dst."/src/lshw";
-                my $exec = "$lshw -xml > ".$self->output;
+                my $exec = "$lshw -xml > $file";
                 system($exec); # can't use Artemis::Base->log_and_exec since
                                # this puts STDERR into the resulting XML file
                                # which in turn becomes invalid XML
