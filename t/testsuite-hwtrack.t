@@ -20,6 +20,7 @@ use Data::DPath 'dpath';
 
 
 BEGIN {use_ok('TestSuite::HWTrack');}
+$ENV{ARTEMIS_TESTRUN}       = 10;
 
 my $track = TestSuite::HWTrack->new();
 isa_ok($track, 'TestSuite::HWTrack');
@@ -28,22 +29,21 @@ $track->install();
 ok(-x $track->prep->dst."/src/lshw",'lshw installed');
 
 
-$track->generate();
+my $report = $track->generate();
 
 
 my $server = IO::Socket::INET->new(Listen    => 5);
 ok($server, 'create socket');
-
-$ENV{ARTEMIS_TESTRUN}       = 10;
 $ENV{ARTEMIS_REPORT_SERVER} = 'localhost';
 $ENV{ARTEMIS_REPORT_PORT}   = $server->sockport;
+
 
 my $retval;
 my $pid=fork();
 if ($pid==0) {
         $server->close();
         sleep(2); #bad and ugly to prevent race condition
-        $retval = $track->send();
+        $retval = $track->send($report);
         # Can't make this a test since the test counter istn't handled correctly after fork
         die $retval if $retval;
         exit 0;
