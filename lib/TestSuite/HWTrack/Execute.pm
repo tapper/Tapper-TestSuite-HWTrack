@@ -9,6 +9,10 @@ class TestSuite::HWTrack::Execute {
 
         has dst    => ( is => 'rw');
 
+        # Generate lshw output and return it as a report string
+        #
+        # @return success - report string
+        # @return error   - undef
         method generate() {
                 my (undef, $file) = tempfile( CLEANUP => 1 );
                 my $lshw = $self->dst."/src/lshw";
@@ -16,15 +20,24 @@ class TestSuite::HWTrack::Execute {
                 system($exec); # can't use Artemis::Base->log_and_exec since
                                # this puts STDERR into the resulting XML file
                                # which in turn becomes invalid XML
+                return $self->gen_report($file);
         }
 
-        method gen_report(HashRef $cfg) {
-                my $xml  = XML::Simple->new(ForceArray => 1);
-                my $data = $xml->XMLin($self->output);
-                my $yaml = Dump($data);
-                $yaml   .= "...\n";
-                $yaml =~ s/^(.*)$/  $1/mg;  # indent
-                my $report = sprintf("
+        # Generate a report based upon the XML formatted data found in the
+        # file given as parameter
+        #
+        # @param string - file name
+        #
+        # @return success - report string
+        # @return error   - undef
+        method gen_report(Str $file) {
+                my $test_run = $ENV{ARTEMIS_TESTRUN};
+                my $xml      = XML::Simple->new(ForceArray => 1);
+                my $data     = $xml->XMLin($file);
+                my $yaml     = Dump($data);
+                $yaml       .= "...\n";
+                $yaml        =~ s/^(.*)$/  $1/mg;  # indent
+                my $report   = sprintf("
 TAP Version 13
 1..2
 # Artemis-Reportgroup-Testrun: %s
@@ -33,14 +46,45 @@ TAP Version 13
 ok 1 - Getting hardware information
 %s
 ok 2 - Sending
-", $cfg->{test_run}, $TestSuite::HWTrack::VERSION, $yaml);
+", $test_run, $TestSuite::HWTrack::VERSION, $yaml);
                 return $report;
         }
 
 
-        method send() {
+        # Generate an error report based upon given error string
+        # the file given as parameter
+        #
+        # @param string - error string
+        #
+        # @return success - report string
+        # @return error   - undef
+        method gen_error(Str $error) {
+                my $test_run = $ENV{ARTEMIS_TESTRUN};
+                my $yaml     = Dump({error => $error});
+                $yaml       .= "...\n";
+                $yaml        =~ s/^(.*)$/  $1/mg;  # indent
+                my $report   = sprintf("
+TAP Version 13
+1..2
+# Artemis-Reportgroup-Testrun: %s
+# Artemis-Suite-Name: HWTrack
+# Artemis-Suite-Version: %s
+not ok 1 - Generating lshw executable
+%s
+ok 2 - Sending
+", $test_run, $TestSuite::HWTrack::VERSION, $yaml);
+                return $report;
+        }
+
+
+        # Send a given report to report receiver.
+        #
+        # @param string - report
+        #
+        # @return success - 0
+        # @return error   - error string
+        method send(Str $report) {
                 my $cfg;
-                $cfg->{test_run}        = $ENV{ARTEMIS_TESTRUN};
                 $cfg->{report_server}   = $ENV{ARTEMIS_REPORT_SERVER};
                 $cfg->{report_api_port} = $ENV{ARTEMIS_REPORT_API_PORT} || 7358;
                 $cfg->{report_port}     = $ENV{ARTEMIS_REPORT_PORT} || 7357;
@@ -54,11 +98,10 @@ ok 2 - Sending
                                                  PeerPort => $cfg->{report_port},
                                                  Proto    => 'tcp');
                 unless ($sock) { die "Can't open connection to ", $cfg->{report_server}, ":$!" }
-                $sock->print($self->gen_report($cfg));
+                $sock->print($report);
                 $sock->close;
                 return 0;
         }
-
 }
 
 
