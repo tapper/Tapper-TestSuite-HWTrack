@@ -5,7 +5,7 @@ class TestSuite::HWTrack {
         use aliased 'TestSuite::HWTrack::Prepare';
         use aliased 'TestSuite::HWTrack::Execute';
         has 'prep' => ( is => 'ro', isa => Prepare, handles => [qw( install )],       default => sub { Prepare->new }, );
-        has 'exec' => ( is => 'ro', isa => Execute, handles => [qw( generate send )], default => sub { Execute->new }, );
+        has 'exec' => ( is => 'ro', isa => Execute, handles => [qw( generate send gen_error )], default => sub { Execute->new }, );
 
         method BUILD
         {
@@ -25,7 +25,7 @@ TestSuite::HWTrack - Keep track of actual hardware in test machine
 =cut
 
         package TestSuite::HWTrack;
-        our $VERSION = '0.010009';
+        our $VERSION = '0.010013';
 
 =head1 SYNOPSIS
 
