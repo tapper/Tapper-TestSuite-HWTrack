@@ -17,6 +17,7 @@ requires 'IO::Socket::INET';
 requires 'File::ShareDir';
 requires 'File::Temp';
 requires 'MooseX::Declare'       => 0.27;
+requires 'XML::SAX';
 
 build_requires 'Data::DPath'     => 0.17;
 build_requires 'Test::More';
