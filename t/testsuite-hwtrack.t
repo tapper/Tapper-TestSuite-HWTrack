@@ -21,6 +21,7 @@ use Data::DPath 'dpath';
 
 BEGIN {use_ok('TestSuite::HWTrack');}
 $ENV{ARTEMIS_TESTRUN}       = 10;
+$ENV{ARTEMIS_HOSTNAME}      = 'foobarhost';
 
 my $track = TestSuite::HWTrack->new();
 isa_ok($track, 'TestSuite::HWTrack');
