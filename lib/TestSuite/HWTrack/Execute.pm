@@ -32,6 +32,7 @@ class TestSuite::HWTrack::Execute {
         # @return error   - undef
         method gen_report(Str $file) {
                 my $test_run = $ENV{ARTEMIS_TESTRUN};
+                my $hostname = $ENV{ARTEMIS_HOSTNAME};
                 my $xml      = XML::Simple->new(ForceArray => 1);
                 my $data     = $xml->XMLin($file);
                 my $yaml     = Dump($data);
@@ -42,11 +43,12 @@ TAP Version 13
 1..2
 # Artemis-Reportgroup-Testrun: %s
 # Artemis-Suite-Name: HWTrack
+# Artemis-Maschine-Name: %s
 # Artemis-Suite-Version: %s
 ok 1 - Getting hardware information
 %s
 ok 2 - Sending
-", $test_run, $TestSuite::HWTrack::VERSION, $yaml);
+", $test_run, $hostname, $TestSuite::HWTrack::VERSION, $yaml);
                 return $report;
         }
 
@@ -60,6 +62,7 @@ ok 2 - Sending
         # @return error   - undef
         method gen_error(Str $error) {
                 my $test_run = $ENV{ARTEMIS_TESTRUN};
+                my $hostname = $ENV{ARTEMIS_HOSTNAME};
                 my $yaml     = Dump({error => $error});
                 $yaml       .= "...\n";
                 $yaml        =~ s/^(.*)$/  $1/mg;  # indent
@@ -68,11 +71,12 @@ TAP Version 13
 1..2
 # Artemis-Reportgroup-Testrun: %s
 # Artemis-Suite-Name: HWTrack
+# Artemis-Maschine-Name: %s
 # Artemis-Suite-Version: %s
 not ok 1 - Generating lshw executable
 %s
 ok 2 - Sending
-", $test_run, $TestSuite::HWTrack::VERSION, $yaml);
+", $test_run, $hostname, $TestSuite::HWTrack::VERSION, $yaml);
                 return $report;
         }
 
@@ -92,7 +96,6 @@ ok 2 - Sending
                 # following options are not yet used in this class
                 $cfg->{mcp_server}      = $ENV{ARTEMIS_SERVER};
                 $cfg->{runtime}         = $ENV{ARTEMIS_TS_RUNTIME};
-                $cfg->{hostname}        = $ENV{ARTEMIS_HOSTNAME};
 
                 my $sock = IO::Socket::INET->new(PeerAddr => $cfg->{report_server},
                                                  PeerPort => $cfg->{report_port},
