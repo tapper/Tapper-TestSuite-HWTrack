@@ -9,16 +9,18 @@ log4perl.appender.root                            = Log::Log4perl::Appender::Scr
 log4perl.appender.root.layout                     = SimpleLayout";
 Log::Log4perl->init(\$string);
 
-my $track  = TestSuite::HWTrack->new();
-my $error  = $track->install();
+eval {
+        my $track  = TestSuite::HWTrack->new();
+        my $error  = $track->install();
 
-my $report;
-if ($error) {
-        $report = $track->gen_error($error);
-} else {
-        $report = $track->generate();
+        my $report;
+        if ($error) {
+                $report = $track->gen_error($error);
+        } else {
+                $report = $track->generate();
+        }
+
+        $track->send($report);
 }
-
-$track->send($report);
 
 exit 0;
