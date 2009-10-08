@@ -21,6 +21,6 @@ eval {
         }
 
         $track->send($report);
-}
+};
 
 exit 0;
