@@ -3,9 +3,10 @@ use 5.010;
 
 class TestSuite::HWTrack::Execute {
         use File::Temp 'tempfile';
+        use IO::Socket::INET;
+        use Sys::Hostname;
         use XML::Simple;
         use YAML;
-        use IO::Socket::INET;
 
         has dst    => ( is => 'rw');
 
@@ -32,7 +33,7 @@ class TestSuite::HWTrack::Execute {
         # @return error   - undef
         method gen_report(Str $file) {
                 my $test_run = $ENV{ARTEMIS_TESTRUN};
-                my $hostname = $ENV{ARTEMIS_HOSTNAME};
+                my $hostname = $ENV{ARTEMIS_HOSTNAME} || Sys::Hostname::hostname();
                 my $xml      = XML::Simple->new(ForceArray => 1);
                 my $data     = $xml->XMLin($file);
                 my $yaml     = Dump($data);
