@@ -25,7 +25,7 @@ TestSuite::HWTrack - Keep track of actual hardware in test machine
 =cut
 
         package TestSuite::HWTrack;
-        our $VERSION = '1.010020';
+        our $VERSION = '1.010021';
 
 =head1 SYNOPSIS
 
