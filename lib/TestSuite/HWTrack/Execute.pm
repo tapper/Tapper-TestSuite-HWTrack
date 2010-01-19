@@ -44,7 +44,7 @@ TAP Version 13
 1..2
 # Artemis-Reportgroup-Testrun: %s
 # Artemis-Suite-Name: HWTrack
-# Artemis-Maschine-Name: %s
+# Artemis-Machine-Name: %s
 # Artemis-Suite-Version: %s
 ok 1 - Getting hardware information
 %s
