@@ -64,6 +64,12 @@ if ($pid==0) {
         my $dom = TAP::DOM->new(tap => $content);
         my $res = $dom ~~ dpath '//description[value ~~ /Getting hardware information/]/../_children//data/capabilities';
         ok(scalar @$res, 'File content from upload');
+        $res = $dom ~~ dpath '//as_string[value =~ /Artemis-Machine-Name/]';
+        {
+                is(scalar @$res, 1, 'One entry contains machine name');
+                last if not ref $res eq 'ARRAY';
+                is($res->[0], "# Artemis-Machine-Name: $ENV{ARTEMIS_HOSTNAME}", 'File content from upload');
+        }
         waitpid($pid,0);
 }
 
