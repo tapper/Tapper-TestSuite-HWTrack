@@ -13,7 +13,7 @@ log4perl.appender.root.stderr = 1
 log4perl.appender.root.layout = SimpleLayout";
 Log::Log4perl->init(\$string);
 
-use Test::More tests => 6;
+use Test::More;
 use Artemis::Config;
 use TAP::DOM;
 use Data::DPath 'dpath';
@@ -67,3 +67,4 @@ if ($pid==0) {
         waitpid($pid,0);
 }
 
+done_testing();
