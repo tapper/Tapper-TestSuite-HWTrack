@@ -1,6 +1,7 @@
 use MooseX::Declare;
 use 5.010;
 
+## no critic (RequireUseStrict)
 class TestSuite::HWTrack {
         use aliased 'TestSuite::HWTrack::Prepare';
         use aliased 'TestSuite::HWTrack::Execute';

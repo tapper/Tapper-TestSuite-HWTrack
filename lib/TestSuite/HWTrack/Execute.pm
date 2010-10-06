@@ -1,6 +1,7 @@
 use MooseX::Declare;
 use 5.010;
 
+## no critic (RequireUseStrict)
 class TestSuite::HWTrack::Execute {
         use File::Temp 'tempfile';
         use IO::Socket::INET;
