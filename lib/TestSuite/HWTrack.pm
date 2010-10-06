@@ -13,36 +13,24 @@ class TestSuite::HWTrack {
         }
 }
 
-
-{
+package TestSuite::HWTrack;
+our $VERSION = '1.010029';
 
 =head1 NAME
 
 TestSuite::HWTrack - Keep track of actual hardware in test machine
 
-=head1 VERSION
-
-=cut
-
-        package TestSuite::HWTrack;
-        our $VERSION = '1.010029';
-
 =head1 SYNOPSIS
 
 
 HWTrack calls the tool lshw, parses its input and sends it to the report
-framework. HWTrack offers a object orientated interface. Error handling is
-implemented using Artemis::Exception.
+framework. HWTrack offers a object orientated interface.
 
   use TestSuite::HWTrack;
   use TryCatch;
   my $config = {report_server => 'bancroft', report_port => 7357};
   my $track = TestSuite::HWTrack($config);
-  try {
-      my $success = $track->run();
-  } catch ($exception) {
-        die $exception->msg();
-  }
+  my $success = $track->run();
 
 =head1 EXPORT
 
@@ -90,5 +78,5 @@ This program is released under the following license: restrictive / proprietary
 
 
 =cut
-}
+
 1; # End of TestSuite::HWTrack
