@@ -26,7 +26,9 @@ $ENV{ARTEMIS_HOSTNAME}      = 'foobarhost';
 my $track = TestSuite::HWTrack->new();
 isa_ok($track, 'TestSuite::HWTrack');
 
+diag "Prepare - can take some time...";
 $track->install();
+diag "Ignore the warning 'you should run this program as super-user'.";
 ok(-x $track->prep->dst."/src/lshw",'lshw installed');
 
 
@@ -62,7 +64,7 @@ if ($pid==0) {
         is($@, '', 'Getting report from hwtrack');
 
         my $dom = TAP::DOM->new(tap => $content);
-        my $res = $dom ~~ dpath '//description[value ~~ /Getting hardware information/]/../_children//data/capabilities';
+        my $res = $dom ~~ dpath '//description[value ~~ /Getting hardware information/]/../_children//data';
         ok(scalar @$res, 'File content from upload');
         $res = $dom ~~ dpath '//as_string[value =~ /Artemis-Machine-Name/]';
         {
