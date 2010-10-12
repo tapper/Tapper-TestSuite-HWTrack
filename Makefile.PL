@@ -6,6 +6,7 @@ use inc::Module::Install;
 name     'TestSuite-HWTrack';
 all_from 'lib/TestSuite/HWTrack.pm';
 author   'OSRC SysInt Team <osrc-sysint@elbe.amd.com>';
+license  'freebsd';
 
 requires 'perl'                  => 5.010;
 install_script 'artemis-testsuite-hwtrack';
@@ -52,5 +53,6 @@ devel:
 '."\tssh".' artemis@bancroft "sudo mv ${MOUNT32}/opt ${MOUNT32}/opt.devel; sudo mv ${MOUNT32}/opt.live ${MOUNT32}/opt;"
 
 ');
+
 WriteAll;
 
