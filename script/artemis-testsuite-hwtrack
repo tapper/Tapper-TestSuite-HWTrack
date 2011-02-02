@@ -1,4 +1,4 @@
-#!/opt/artemis/bin/perl
+#!/opt/tapper/bin/perl
 
 use TestSuite::HWTrack;
 use Log::Log4perl;

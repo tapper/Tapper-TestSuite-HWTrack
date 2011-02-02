@@ -2,7 +2,7 @@
 
 EXECDIR=$(dirname $0)
 DISTFILES='TestSuite*-*.*.tar.gz '
-$EXECDIR/artemis_version_increment.pl $EXECDIR/../lib/TestSuite/HWTrack.pm
+$EXECDIR/tapper_version_increment.pl $EXECDIR/../lib/TestSuite/HWTrack.pm
 cd $EXECDIR/..
 
 rm MANIFEST
@@ -20,10 +20,10 @@ make dist || exit -1
 
 echo ""
 echo '----- upload ---------------------------------------------------'
-rsync -vv --progress --ignore-existing ${DISTFILES} artemis@wotan:/home/artemis/CPANSITE/CPAN/authors/id/A/AR/ARTEMIS/
+rsync -vv --progress --ignore-existing ${DISTFILES} tapper@wotan:/home/tapper/CPANSITE/CPAN/authors/id/T/TA/TAPPER/
 
 echo ""
 echo '----- re-index -------------------------------------------------'
-ssh artemis@wotan /home/artemis/perl510/bin/cpansite -vv --site=/home/artemis/CPANSITE/CPAN --cpan=ftp://ftp.fu-berlin.de/unix/languages/perl/ index
-ssh artemis@wotan /home/artemis/perl510/bin/cpan TestSuite::HWTrack
+ssh tapper@wotan /home/tapper/perl510/bin/cpansite -vv --site=/home/tapper/CPANSITE/CPAN --cpan=ftp://ftp.fu-berlin.de/unix/languages/perl/ index
+ssh tapper@wotan /home/tapper/perl510/bin/cpan TestSuite::HWTrack
 

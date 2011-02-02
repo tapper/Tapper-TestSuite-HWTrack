@@ -2,7 +2,7 @@ use MooseX::Declare;
 use 5.010;
 
 ## no critic (RequireUseStrict)
-class TestSuite::HWTrack::Prepare extends Artemis::Base {
+class TestSuite::HWTrack::Prepare extends Tapper::Base {
 
         use File::ShareDir 'module_dir';
         use File::Temp     'tempdir';

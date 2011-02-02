@@ -19,7 +19,7 @@ class TestSuite::HWTrack::Execute {
                 my (undef, $file) = tempfile( CLEANUP => 1 );
                 my $lshw = $self->dst."/src/lshw";
                 my $exec = "$lshw -xml > $file";
-                system($exec); # can't use Artemis::Base->log_and_exec since
+                system($exec); # can't use Tapper::Base->log_and_exec since
                                # this puts STDERR into the resulting XML file
                                # which in turn becomes invalid XML
                 return $self->gen_report($file);
@@ -33,8 +33,8 @@ class TestSuite::HWTrack::Execute {
         # @return success - report string
         # @return error   - undef
         method gen_report(Str $file) {
-                my $test_run = $ENV{ARTEMIS_TESTRUN};
-                my $hostname = $ENV{ARTEMIS_HOSTNAME} || Sys::Hostname::hostname();
+                my $test_run = $ENV{TAPPER_TESTRUN};
+                my $hostname = $ENV{TAPPER_HOSTNAME} || Sys::Hostname::hostname();
                 my $xml      = XML::Simple->new(ForceArray => 1);
                 my $data     = $xml->XMLin($file);
                 my $yaml     = Dump($data);
@@ -43,10 +43,10 @@ class TestSuite::HWTrack::Execute {
                 my $report   = sprintf("
 TAP Version 13
 1..2
-# Artemis-Reportgroup-Testrun: %s
-# Artemis-Suite-Name: HWTrack
-# Artemis-Machine-Name: %s
-# Artemis-Suite-Version: %s
+# Tapper-Reportgroup-Testrun: %s
+# Tapper-Suite-Name: HWTrack
+# Tapper-Machine-Name: %s
+# Tapper-Suite-Version: %s
 ok 1 - Getting hardware information
 %s
 ok 2 - Sending
@@ -63,18 +63,18 @@ ok 2 - Sending
         # @return success - report string
         # @return error   - undef
         method gen_error(Str $error) {
-                my $test_run = $ENV{ARTEMIS_TESTRUN};
-                my $hostname = $ENV{ARTEMIS_HOSTNAME};
+                my $test_run = $ENV{TAPPER_TESTRUN};
+                my $hostname = $ENV{TAPPER_HOSTNAME};
                 my $yaml     = Dump({error => $error});
                 $yaml       .= "...\n";
                 $yaml        =~ s/^(.*)$/  $1/mg;  # indent
                 my $report   = sprintf("
 TAP Version 13
 1..2
-# Artemis-Reportgroup-Testrun: %s
-# Artemis-Suite-Name: HWTrack
-# Artemis-Machine-Name: %s
-# Artemis-Suite-Version: %s
+# Tapper-Reportgroup-Testrun: %s
+# Tapper-Suite-Name: HWTrack
+# Tapper-Machine-Name: %s
+# Tapper-Suite-Version: %s
 not ok 1 - Generating lshw executable
 %s
 ok 2 - Sending
@@ -91,13 +91,13 @@ ok 2 - Sending
         # @return error   - error string
         method send(Str $report) {
                 my $cfg;
-                $cfg->{report_server}   = $ENV{ARTEMIS_REPORT_SERVER} || 'bascha';
-                $cfg->{report_api_port} = $ENV{ARTEMIS_REPORT_API_PORT} || 7358;
-                $cfg->{report_port}     = $ENV{ARTEMIS_REPORT_PORT} || 7357;
+                $cfg->{report_server}   = $ENV{TAPPER_REPORT_SERVER} || 'bascha';
+                $cfg->{report_api_port} = $ENV{TAPPER_REPORT_API_PORT} || 7358;
+                $cfg->{report_port}     = $ENV{TAPPER_REPORT_PORT} || 7357;
 
                 # following options are not yet used in this class
-                $cfg->{mcp_server}      = $ENV{ARTEMIS_SERVER};
-                $cfg->{runtime}         = $ENV{ARTEMIS_TS_RUNTIME};
+                $cfg->{mcp_server}      = $ENV{TAPPER_SERVER};
+                $cfg->{runtime}         = $ENV{TAPPER_TS_RUNTIME};
 
                 my $sock = IO::Socket::INET->new(PeerAddr => $cfg->{report_server},
                                                  PeerPort => $cfg->{report_port},

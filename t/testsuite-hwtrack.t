@@ -14,14 +14,14 @@ log4perl.appender.root.layout = SimpleLayout";
 Log::Log4perl->init(\$string);
 
 use Test::More;
-use Artemis::Config;
+use Tapper::Config;
 use TAP::DOM;
 use Data::DPath 'dpath';
 
 
 BEGIN {use_ok('TestSuite::HWTrack');}
-$ENV{ARTEMIS_TESTRUN}       = 10;
-$ENV{ARTEMIS_HOSTNAME}      = 'foobarhost';
+$ENV{TAPPER_TESTRUN}       = 10;
+$ENV{TAPPER_HOSTNAME}      = 'foobarhost';
 
 my $track = TestSuite::HWTrack->new();
 isa_ok($track, 'TestSuite::HWTrack');
@@ -37,8 +37,8 @@ my $report = $track->generate();
 
 my $server = IO::Socket::INET->new(Listen    => 5);
 ok($server, 'create socket');
-$ENV{ARTEMIS_REPORT_SERVER} = 'localhost';
-$ENV{ARTEMIS_REPORT_PORT}   = $server->sockport;
+$ENV{TAPPER_REPORT_SERVER} = 'localhost';
+$ENV{TAPPER_REPORT_PORT}   = $server->sockport;
 
 
 my $retval;
@@ -66,11 +66,11 @@ if ($pid==0) {
         my $dom = TAP::DOM->new(tap => $content);
         my $res = $dom ~~ dpath '//description[value ~~ /Getting hardware information/]/../_children//data';
         ok(scalar @$res, 'File content from upload');
-        $res = $dom ~~ dpath '//as_string[value =~ /Artemis-Machine-Name/]';
+        $res = $dom ~~ dpath '//as_string[value =~ /Tapper-Machine-Name/]';
         {
                 is(scalar @$res, 1, 'One entry contains machine name');
                 last if not ref $res eq 'ARRAY';
-                is($res->[0], "# Artemis-Machine-Name: $ENV{ARTEMIS_HOSTNAME}", 'File content from upload');
+                is($res->[0], "# Tapper-Machine-Name: $ENV{TAPPER_HOSTNAME}", 'File content from upload');
         }
         waitpid($pid,0);
 }
