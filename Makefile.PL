@@ -30,29 +30,6 @@ build_requires 'TAP::DOM';
 # the following string concatenation might look weird but it's the best
 # trade-off between having tabs instead of 8 spaces and not having to quote
 # everything Perl understands
-postamble('
-MOUNT=/opt/tapper/mnt
-MOUNT64:=${MOUNT}64
-MOUNT32:=${MOUNT}32
-PKG_DIR=/data/bancroft/tapper/live/repository/packages/tapperutils/
-
-live:
-'."\t./scripts/dist_upload_wotan.sh dist
-\tssh".' tapper@bancroft "cd ${MOUNT64}; sudo chroot ${MOUNT64} /opt/tapper/bin/cpan TestSuite::HWTrack; tar -czf ${PKG_DIR}/opt-tapper64.tar.gz opt/ etc/resolv.conf"
-'."\tssh".' tapper@bancroft "cd ${MOUNT32}; sudo chroot ${MOUNT32} /opt/tapper/bin/cpan TestSuite::HWTrack; tar -czf ${PKG_DIR}/opt-tapper32.tar.gz opt/ etc/resolv.conf"
-
-devel:
-'."\t./scripts/dist_upload_wotan.sh dist
-
-\tssh".' tapper@bancroft "sudo mv ${MOUNT64}/opt ${MOUNT64}/opt.live; sudo mv ${MOUNT64}/opt.devel ${MOUNT64}/opt;"
-'."\tssh".' tapper@bancroft "cd ${MOUNT64}; sudo chroot ${MOUNT64} /opt/tapper/bin/cpan TestSuite::HWTrack; tar -czf ${PKG_DIR}/opt-tapper64_devel.tar.gz opt/"
-'."\tssh".' tapper@bancroft "sudo mv ${MOUNT64}/opt ${MOUNT64}/opt.devel; sudo mv ${MOUNT64}/opt.live ${MOUNT64}/opt;"
-
-'."\tssh".' tapper@bancroft "sudo mv ${MOUNT32}/opt ${MOUNT32}/opt.live; sudo mv ${MOUNT32}/opt.devel ${MOUNT32}/opt;"
-'."\tssh".' tapper@bancroft "cd ${MOUNT32}; sudo chroot ${MOUNT32} /opt/tapper/bin/cpan TestSuite::HWTrack; tar -czf ${PKG_DIR}/opt-tapper32_devel.tar.gz opt/"
-'."\tssh".' tapper@bancroft "sudo mv ${MOUNT32}/opt ${MOUNT32}/opt.devel; sudo mv ${MOUNT32}/opt.live ${MOUNT32}/opt;"
-
-');
 
 WriteAll;
 
