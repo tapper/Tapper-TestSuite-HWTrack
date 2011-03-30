@@ -25,7 +25,6 @@ $ENV{TAPPER_HOSTNAME}      = 'foobarhost';
 
 my $track = Tapper::TestSuite::HWTrack->new();
 isa_ok($track, 'Tapper::TestSuite::HWTrack');
-$DB::single=1;
 my $report = $track->generate();
 
 my $server = IO::Socket::INET->new(Listen => 5);
@@ -46,7 +45,7 @@ if ($pid==0) {
 } else {
         my $content;
         eval{
-                $SIG{ALRM}=sub{die("timeout of 10 seconds reached while waiting for file upload test.");};
+                $SIG{ALRM}=sub{die("timeout of 60 seconds reached while waiting for file upload test.");};
                 alarm(60);
                 my $msg_sock = $server->accept();
                 while (my $line=<$msg_sock>) {
