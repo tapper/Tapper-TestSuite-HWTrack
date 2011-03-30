@@ -1,6 +1,6 @@
 #!/opt/tapper/bin/perl
 
-use TestSuite::HWTrack;
+use Tapper::TestSuite::HWTrack;
 use Log::Log4perl;
 
 my $string = "
@@ -10,16 +10,8 @@ log4perl.appender.root.layout                     = SimpleLayout";
 Log::Log4perl->init(\$string);
 
 eval {
-        my $track  = TestSuite::HWTrack->new();
-        my $error  = $track->install();
-
-        my $report;
-        if ($error) {
-                $report = $track->gen_error($error);
-        } else {
-                $report = $track->generate();
-        }
-
+        my $track  = Tapper::TestSuite::HWTrack->new;
+        $report = $track->generate();
         $track->send($report);
 };
 
