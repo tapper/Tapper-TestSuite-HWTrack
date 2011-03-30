@@ -19,13 +19,13 @@ use TAP::DOM;
 use Data::DPath 'dpath';
 
 
-BEGIN {use_ok('Tapper::TestSuite::HWTrack');}
+use Tapper::TestSuite::HWTrack;
 $ENV{TAPPER_TESTRUN}       = 10;
 $ENV{TAPPER_HOSTNAME}      = 'foobarhost';
 
 my $track = Tapper::TestSuite::HWTrack->new();
 isa_ok($track, 'Tapper::TestSuite::HWTrack');
-
+$DB::single=1;
 my $report = $track->generate();
 
 my $server = IO::Socket::INET->new(Listen => 5);
@@ -38,7 +38,7 @@ my $retval;
 my $pid=fork();
 if ($pid==0) {
         $server->close();
-        sleep(10); #bad and ugly to prevent race condition
+        sleep(2); #bad and ugly to prevent race condition
         $retval = $track->send($report);
         # Can't make this a test since the test counter istn't handled correctly after fork
         die $retval if $retval;
@@ -47,7 +47,7 @@ if ($pid==0) {
         my $content;
         eval{
                 $SIG{ALRM}=sub{die("timeout of 10 seconds reached while waiting for file upload test.");};
-                alarm(10);
+                alarm(60);
                 my $msg_sock = $server->accept();
                 while (my $line=<$msg_sock>) {
                         $content.=$line;
