@@ -28,10 +28,11 @@ isa_ok($track, 'Tapper::TestSuite::HWTrack');
 
 my $report = $track->generate();
 
-my $server = IO::Socket::INET->new(Listen    => 5);
+my $server = IO::Socket::INET->new(Listen => 5);
 ok($server, 'create socket');
 $ENV{TAPPER_REPORT_SERVER} = 'localhost';
 $ENV{TAPPER_REPORT_PORT}   = $server->sockport;
+diag "use port ".$ENV{TAPPER_REPORT_PORT};
 
 my $retval;
 my $pid=fork();
@@ -50,6 +51,7 @@ if ($pid==0) {
                 my $msg_sock = $server->accept();
                 while (my $line=<$msg_sock>) {
                         $content.=$line;
+                        diag $line;
                 }
                 alarm(0);
         };

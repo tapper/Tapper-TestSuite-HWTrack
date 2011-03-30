@@ -95,6 +95,7 @@ ok 2 - Sending
                 $cfg->{report_api_port} = $ENV{TAPPER_REPORT_API_PORT} || 7358;
                 $cfg->{report_port}     = $ENV{TAPPER_REPORT_PORT}     || 7357;
 
+                print STDERR "host:port = ".$cfg->{report_server}.":".$cfg->{report_port};
                 # following options are not yet used in this class
                 $cfg->{mcp_server}      = $ENV{TAPPER_SERVER};
                 $cfg->{runtime}         = $ENV{TAPPER_TS_RUNTIME};
@@ -102,7 +103,7 @@ ok 2 - Sending
                 my $sock = IO::Socket::INET->new(PeerAddr => $cfg->{report_server},
                                                  PeerPort => $cfg->{report_port},
                                                  Proto    => 'tcp');
-                unless ($sock) { die "Can't open connection to ", $cfg->{report_server}, ":$!" }
+                unless ($sock) { die "Can't open connection to ", $cfg->{report_server}, ":", $cfg->{report_port}, ": $!" }
                 $sock->print($report);
                 $sock->close;
                 return 0;
