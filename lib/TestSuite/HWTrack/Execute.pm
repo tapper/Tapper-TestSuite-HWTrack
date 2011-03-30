@@ -134,9 +134,9 @@ You can find documentation for this module with the perldoc command.
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2008 OSRC SysInt team, all rights reserved.
+Copyright 2008-2011 AMD OSRC Tapper team, all rights reserved.
 
-This program is released under the following license: restrictive / proprietary
+This program is released under the following license: freebsd
 
 
 =cut
