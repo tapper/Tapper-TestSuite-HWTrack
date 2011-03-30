@@ -3,7 +3,7 @@
 use Test::More tests => 1;
 
 BEGIN {
-	use_ok( 'TestSuite::HWTrack' );
+	use_ok( 'Tapper::TestSuite::HWTrack' );
 }
 
-diag( "Testing TestSuite::HWTrack $TestSuite::HWTrack::VERSION, Perl $], $^X" );
+diag( "Testing Tapper::TestSuite::HWTrack $Tapper::TestSuite::HWTrack::VERSION, Perl $], $^X" );
