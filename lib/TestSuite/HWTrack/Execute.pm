@@ -17,7 +17,7 @@ class Tapper::TestSuite::HWTrack::Execute {
         # @return error   - undef
         method generate() {
                 my (undef, $file) = tempfile( CLEANUP => 1 );
-                my $lshw = $self->dst."/src/lshw";
+                my $lshw = "lshw";
                 my $exec = "$lshw -xml > $file";
                 system($exec); # can't use Tapper::Base->log_and_exec since
                                # this puts STDERR into the resulting XML file
@@ -91,9 +91,9 @@ ok 2 - Sending
         # @return error   - error string
         method send(Str $report) {
                 my $cfg;
-                $cfg->{report_server}   = $ENV{TAPPER_REPORT_SERVER} || 'bascha';
+                $cfg->{report_server}   = $ENV{TAPPER_REPORT_SERVER}   || 'tapper';
                 $cfg->{report_api_port} = $ENV{TAPPER_REPORT_API_PORT} || 7358;
-                $cfg->{report_port}     = $ENV{TAPPER_REPORT_PORT} || 7357;
+                $cfg->{report_port}     = $ENV{TAPPER_REPORT_PORT}     || 7357;
 
                 # following options are not yet used in this class
                 $cfg->{mcp_server}      = $ENV{TAPPER_SERVER};

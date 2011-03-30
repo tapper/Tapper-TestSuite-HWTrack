@@ -42,7 +42,7 @@ Don't use this module directly!
 
 =head1 AUTHOR
 
-OSRC SysInt team, C<< <osrc-sysint at elbe.amd.com> >>
+AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
 
 =head1 SUPPORT
 

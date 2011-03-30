@@ -24,29 +24,14 @@ Tapper::TestSuite::HWTrack - Tapper - Report hardware meta information
 =head1 SYNOPSIS
 
 
-HWTrack calls the tool lshw, parses its input and sends it to the report
-framework. HWTrack offers a object orientated interface.
+HWTrack calls the tool lshw, parses its input and sends it to the
+report framework.
 
   use TestSuite::HWTrack;
   use TryCatch;
-  my $config = {report_server => 'bancroft', report_port => 7357};
-  my $track = TestSuite::HWTrack($config);
+  my $config  = { report_server => 'bancroft', report_port => 7357 };
+  my $track   = TestSuite::HWTrack($config);
   my $success = $track->run();
-
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
-
-=head1 FUNCTIONS
-
-=head2
-
-=cut
-
-#sub prepare { shift; TestSuite::HWTrack::Prepare->new->prepare(@_) }
-
-
 
 =head1 AUTHOR
 
@@ -54,11 +39,11 @@ AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-testsuite-hwtrack at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=TestSuite-HWTrack>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
-
-
+Please report any bugs or feature requests to C<bug-testsuite-hwtrack
+at rt.cpan.org>, or through the web interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=TestSuite-HWTrack>.
+I will be notified, and then you'll automatically be notified of
+progress on your bug as I make changes.
 
 
 =head1 SUPPORT
