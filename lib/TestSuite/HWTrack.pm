@@ -2,9 +2,9 @@ use MooseX::Declare;
 use 5.010;
 
 ## no critic (RequireUseStrict)
-class TestSuite::HWTrack {
-        use aliased 'TestSuite::HWTrack::Prepare';
-        use aliased 'TestSuite::HWTrack::Execute';
+class Tapper::TestSuite::HWTrack {
+        use aliased 'Tapper::TestSuite::HWTrack::Prepare';
+        use aliased 'Tapper::TestSuite::HWTrack::Execute';
         has 'prep' => ( is => 'ro', isa => Prepare, handles => [qw( install )],       default => sub { Prepare->new }, );
         has 'exec' => ( is => 'ro', isa => Execute, handles => [qw( generate send gen_error )], default => sub { Execute->new }, );
 
@@ -14,12 +14,12 @@ class TestSuite::HWTrack {
         }
 }
 
-package TestSuite::HWTrack;
-our $VERSION = '1.010029';
+package Tapper::TestSuite::HWTrack;
+our $VERSION = '3.000001';
 
 =head1 NAME
 
-TestSuite::HWTrack - Keep track of actual hardware in test machine
+Tapper::TestSuite::HWTrack - Tapper - Report hardware meta information
 
 =head1 SYNOPSIS
 
@@ -65,8 +65,7 @@ automatically be notified of progress on your bug as I make changes.
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc TestSuite::HWTrack
-
+    perldoc Tapper::TestSuite::HWTrack
 
 =head1 ACKNOWLEDGEMENTS
 
@@ -80,4 +79,4 @@ This program is released under the following license: freebsd
 
 =cut
 
-1; # End of TestSuite::HWTrack
+1; # End of Tapper::TestSuite::HWTrack

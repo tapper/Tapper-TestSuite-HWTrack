@@ -2,7 +2,7 @@ use MooseX::Declare;
 use 5.010;
 
 ## no critic (RequireUseStrict)
-class TestSuite::HWTrack::Execute {
+class Tapper::TestSuite::HWTrack::Execute {
         use File::Temp 'tempfile';
         use IO::Socket::INET;
         use Sys::Hostname;
@@ -50,7 +50,7 @@ TAP Version 13
 ok 1 - Getting hardware information
 %s
 ok 2 - Sending
-", $test_run, $hostname, $TestSuite::HWTrack::VERSION, $yaml);
+", $test_run, $hostname, $Tapper::TestSuite::HWTrack::VERSION, $yaml);
                 return $report;
         }
 
@@ -78,7 +78,7 @@ TAP Version 13
 not ok 1 - Generating lshw executable
 %s
 ok 2 - Sending
-", $test_run, $hostname, $TestSuite::HWTrack::VERSION, $yaml);
+", $test_run, $hostname, $Tapper::TestSuite::HWTrack::VERSION, $yaml);
                 return $report;
         }
 
@@ -112,7 +112,7 @@ ok 2 - Sending
 
 =head1 NAME
 
-TestSuite::HWTrack::Execute - Support package for TestSuite::HWTrack
+Tapper::TestSuite::HWTrack::Execute - Support package for Tapper::TestSuite::HWTrack
 
 =head1 SYNOPSIS
 
@@ -120,13 +120,13 @@ Don't use this module directly!
 
 =head1 AUTHOR
 
-OSRC SysInt team, C<< <osrc-sysint at elbe.amd.com> >>
+AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
 
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc TestSuite::HWTrack
+    perldoc Tapper::TestSuite::HWTrack
 
 
 =head1 ACKNOWLEDGEMENTS

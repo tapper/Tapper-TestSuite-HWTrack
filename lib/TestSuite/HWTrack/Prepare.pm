@@ -2,12 +2,12 @@ use MooseX::Declare;
 use 5.010;
 
 ## no critic (RequireUseStrict)
-class TestSuite::HWTrack::Prepare extends Tapper::Base {
+class Tapper::TestSuite::HWTrack::Prepare extends Tapper::Base {
 
         use File::ShareDir 'module_dir';
         use File::Temp     'tempdir';
 
-        has src       => ( is => 'rw', default => sub { module_dir('TestSuite::HWTrack')."/lshw" } );
+        has src       => ( is => 'rw', default => sub { module_dir('Tapper::TestSuite::HWTrack')."/lshw" } );
         has dst       => ( is => 'rw', default => sub { tempdir( CLEANUP => 0 ) } );
         has exitcode  => ( is => 'rw', );
         has starttime => ( is => 'rw', );
@@ -34,7 +34,7 @@ class TestSuite::HWTrack::Prepare extends Tapper::Base {
 
 =head1 NAME
 
-TestSuite::HWTrack::Prepare - Support package for TestSuite::HWTrack
+Tapper::TestSuite::HWTrack::Prepare - Support package for Tapper::TestSuite::HWTrack
 
 =head1 SYNOPSIS
 
@@ -48,7 +48,7 @@ OSRC SysInt team, C<< <osrc-sysint at elbe.amd.com> >>
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc TestSuite::HWTrack
+    perldoc Tapper::TestSuite::HWTrack
 
 
 =head1 ACKNOWLEDGEMENTS
