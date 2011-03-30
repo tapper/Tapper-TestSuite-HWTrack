@@ -4,9 +4,9 @@ use warnings;
 use inc::Module::Install;
 
 name     'Tapper-TestSuite-HWTrack';
+license  'freebsd';
 all_from 'lib/Tapper/TestSuite/HWTrack.pm';
 author   'AMD OSRC Tapper Team <tapper@amd64.org>';
-license  'freebsd';
 
 requires 'perl'                  => 5.010;
 install_script 'tapper-testsuite-hwtrack';
