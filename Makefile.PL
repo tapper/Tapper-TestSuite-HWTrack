@@ -11,6 +11,7 @@ author   'AMD OSRC Tapper Team <tapper@amd64.org>';
 requires 'perl'                  => 5.010;
 install_script 'tapper-testsuite-hwtrack';
 
+requires 'Tapper::Base'                   => "3.000005";
 requires 'File::ShareDir';
 requires 'File::Temp';
 requires 'File::Temp';
