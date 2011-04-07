@@ -10,7 +10,7 @@ class Tapper::TestSuite::HWTrack {
 }
 
 package Tapper::TestSuite::HWTrack;
-our $VERSION = '3.000001';
+our $VERSION = '3.000010';
 
 =head1 NAME
 
