@@ -11,7 +11,7 @@ author   'AMD OSRC Tapper Team <tapper@amd64.org>';
 requires 'perl'                  => 5.010;
 install_script 'tapper-testsuite-hwtrack';
 
-requires 'Tapper::Base' => 3.000010";
+requires 'Tapper::Base' => "3.000010";
 requires 'File::ShareDir';
 requires 'File::Temp';
 requires 'File::Temp';
@@ -25,7 +25,7 @@ requires 'YAML';
 
 build_requires 'Data::DPath'     => 0.17;
 build_requires 'Test::More';
-build_requires 'Tapper::Config' => 3.000010";
+build_requires 'Tapper::Config' => "3.000010";
 build_requires 'TAP::DOM';
 
 # the following string concatenation might look weird but it's the best
