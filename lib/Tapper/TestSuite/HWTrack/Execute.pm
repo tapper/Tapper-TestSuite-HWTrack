@@ -91,9 +91,9 @@ ok 2 - Sending
         # @return error   - error string
         method send(Str $report) {
                 my $cfg;
-                $cfg->{report_server}   = $ENV{TAPPER_REPORT_SERVER}   || 'tapper';
-                $cfg->{report_api_port} = $ENV{TAPPER_REPORT_API_PORT} || 7358;
-                $cfg->{report_port}     = $ENV{TAPPER_REPORT_PORT}     || 7357;
+                $cfg->{report_server}   = $ENV{TAPPER_REPORT_SERVER};
+                $cfg->{report_api_port} = $ENV{TAPPER_REPORT_API_PORT};
+                $cfg->{report_port}     = $ENV{TAPPER_REPORT_PORT};
 
                 print STDERR "host:port = ".$cfg->{report_server}.":".$cfg->{report_port};
                 # following options are not yet used in this class
