@@ -105,6 +105,7 @@ ok 2 - Sending
                                                  Proto    => 'tcp');
                 unless ($sock) { die "Can't open connection to ", $cfg->{report_server}, ":", $cfg->{report_port}, ": $!" }
                 $sock->print($report);
+                sleep 2; # we suffer from some cut-offs, maybe that helps
                 $sock->close;
                 return 0;
         }
