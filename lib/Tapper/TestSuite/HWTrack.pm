@@ -16,17 +16,10 @@ our $VERSION = '3.000010';
 
 Tapper::TestSuite::HWTrack - Tapper - Report hardware meta information
 
-=head1 SYNOPSIS
-
+=head1 ABOUT
 
 HWTrack calls the tool lshw, parses its input and sends it to the
 report framework.
-
-  use TestSuite::HWTrack;
-  use TryCatch;
-  my $config  = { report_server => 'bancroft', report_port => 7357 };
-  my $track   = TestSuite::HWTrack($config);
-  my $success = $track->run();
 
 =head1 AUTHOR
 
