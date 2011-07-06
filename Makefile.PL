@@ -16,6 +16,7 @@ requires 'File::ShareDir';
 requires 'File::Temp';
 requires 'File::Temp';
 requires 'IO::Socket::INET';
+requires 'IO::Select';
 requires 'MooseX::Declare'       => 0.27;
 requires 'Sys::Hostname';
 requires 'XML::SAX';
