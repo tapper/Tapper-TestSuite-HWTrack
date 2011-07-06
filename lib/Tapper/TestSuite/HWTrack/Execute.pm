@@ -4,6 +4,7 @@ use 5.010;
 ## no critic (RequireUseStrict)
 class Tapper::TestSuite::HWTrack::Execute {
         use File::Temp 'tempfile';
+        use IO::Select;
         use IO::Socket::INET;
         use Sys::Hostname;
         use XML::Simple;
@@ -104,7 +105,16 @@ ok 2 - Sending
                                                  PeerPort => $cfg->{report_port},
                                                  Proto    => 'tcp');
                 unless ($sock) { die "Can't open connection to ", $cfg->{report_server}, ":", $cfg->{report_port}, ": $!" }
-                $sock->print($report);
+                my $select = IO::Select->new();
+                $select->add($sock);
+                my $remaining = length($report);
+                my $offset    = 0;
+                while ($remaining and $select->can_write()) {
+                        my $written = syswrite($sock, $report, 1024, $offset);
+                        $remaining -= $written;
+                        $offset    += $written;
+                }
+
                 $sock->close;
                 return 0;
         }
