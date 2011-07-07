@@ -108,13 +108,14 @@ ok 2 - Sending
                 my $select = IO::Select->new();
                 $select->add($sock);
                 my $remaining = length($report);
+                say STDERR "\n$remaining";
                 my $offset    = 0;
                 while ($remaining and $select->can_write()) {
                         my $written = syswrite($sock, $report, 1024, $offset);
                         $remaining -= $written;
                         $offset    += $written;
                 }
-
+                sleep 2;
                 $sock->close;
                 return 0;
         }
