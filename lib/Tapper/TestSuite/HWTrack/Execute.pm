@@ -1,8 +1,10 @@
-use MooseX::Declare;
-use 5.010;
-
 ## no critic (RequireUseStrict)
-class Tapper::TestSuite::HWTrack::Execute {
+package Tapper::TestSuite::HWTrack::Execute;
+# ABSTRACT: Support package for Tapper::TestSuite::HWTrack
+
+        use 5.010;
+        use Moose;
+
         use File::Temp 'tempfile';
         use IO::Select;
         use IO::Socket::INET;
@@ -16,7 +18,9 @@ class Tapper::TestSuite::HWTrack::Execute {
         #
         # @return success - report string
         # @return error   - undef
-        method generate() {
+        sub generate {
+                my ($self) = @_;
+
                 my (undef, $file) = tempfile( CLEANUP => 1 );
                 my $lshw = "lshw";
                 my $exec = "$lshw -xml > $file";
@@ -33,7 +37,9 @@ class Tapper::TestSuite::HWTrack::Execute {
         #
         # @return success - report string
         # @return error   - undef
-        method gen_report(Str $file) {
+        sub gen_report {
+                my ($self, $file) = @_;
+
                 my $test_run = $ENV{TAPPER_TESTRUN};
                 my $hostname = $ENV{TAPPER_HOSTNAME} || Sys::Hostname::hostname();
                 my $xml      = XML::Simple->new(ForceArray => 1);
@@ -63,7 +69,9 @@ ok 2 - Sending
         #
         # @return success - report string
         # @return error   - undef
-        method gen_error(Str $error) {
+        sub gen_error {
+                my ($self, $error) = @_;
+
                 my $test_run = $ENV{TAPPER_TESTRUN};
                 my $hostname = $ENV{TAPPER_HOSTNAME};
                 my $yaml     = Dump({error => $error});
@@ -90,7 +98,9 @@ ok 2 - Sending
         #
         # @return success - 0
         # @return error   - error string
-        method send(Str $report) {
+        sub send {
+                my ($self, $report) = @_;
+
                 my $cfg;
                 $cfg->{report_server}   = $ENV{TAPPER_REPORT_SERVER};
                 $cfg->{report_api_port} = $ENV{TAPPER_REPORT_API_PORT};
@@ -119,38 +129,5 @@ ok 2 - Sending
                 $sock->close;
                 return 0;
         }
-}
-
-
-=head1 NAME
-
-Tapper::TestSuite::HWTrack::Execute - Support package for Tapper::TestSuite::HWTrack
-
-=head1 SYNOPSIS
-
-Don't use this module directly!
-
-=head1 AUTHOR
-
-AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc Tapper::TestSuite::HWTrack
-
-
-=head1 ACKNOWLEDGEMENTS
-
-
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008-2011 AMD OSRC Tapper team, all rights reserved.
-
-This program is released under the following license: freebsd
-
-
-=cut
 
 1;
