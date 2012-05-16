@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+4.0.1     2012-05-16
         - sleep on sending (cargo cult, yes, but The Real Deal)
         - Review default usage of hosts/ports - OSRC#1016
         - big Dist::Zilla roundhouse kick
