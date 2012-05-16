@@ -14,11 +14,16 @@ package Tapper::TestSuite::HWTrack::Prepare;
         has exitcode  => ( is => 'rw', );
         has starttime => ( is => 'rw', );
 
+=head2 install
 
-        # Prepare lshw executable
-        #
-        # @return success - 0
-        # @return error   - error string
+Prepare lshw executable
+
+@return success - 0
+
+@return error   - error string
+
+=cut
+
         sub install {
                 my ($self) = @_;
 

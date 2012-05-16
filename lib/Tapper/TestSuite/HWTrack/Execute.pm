@@ -14,10 +14,16 @@ package Tapper::TestSuite::HWTrack::Execute;
 
         has dst    => ( is => 'rw');
 
-        # Generate lshw output and return it as a report string
-        #
-        # @return success - report string
-        # @return error   - undef
+=head2 generate
+
+Generate lshw output and return it as a report string
+
+@return success - report string
+
+@return error   - undef
+
+=cut
+
         sub generate {
                 my ($self) = @_;
 
@@ -30,13 +36,18 @@ package Tapper::TestSuite::HWTrack::Execute;
                 return $self->gen_report($file);
         }
 
-        # Generate a report based upon the XML formatted data found in the
-        # file given as parameter
-        #
-        # @param string - file name
-        #
-        # @return success - report string
-        # @return error   - undef
+=head2 gen_report
+
+Generate a report based upon the XML formatted data found in the
+file given as parameter
+
+@param string - file name
+
+@return success - report string
+@return error   - undef
+
+=cut
+
         sub gen_report {
                 my ($self, $file) = @_;
 
@@ -61,14 +72,19 @@ ok 2 - Sending
                 return $report;
         }
 
+=head2 gen_error
 
-        # Generate an error report based upon given error string
-        # the file given as parameter
-        #
-        # @param string - error string
-        #
-        # @return success - report string
-        # @return error   - undef
+Generate an error report based upon given error string
+the file given as parameter
+
+@param string - error string
+
+@return success - report string
+
+@return error   - undef
+
+=pod
+
         sub gen_error {
                 my ($self, $error) = @_;
 
@@ -91,13 +107,19 @@ ok 2 - Sending
                 return $report;
         }
 
+=head2 send
 
-        # Send a given report to report receiver.
-        #
-        # @param string - report
-        #
-        # @return success - 0
-        # @return error   - error string
+Send a given report to report receiver.
+
+@param string - report
+
+@return success - 0
+
+@return error   - error string
+
+=cut
+
+
         sub send {
                 my ($self, $report) = @_;
 
