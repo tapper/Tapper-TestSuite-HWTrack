@@ -1,4 +1,6 @@
 #!/opt/tapper/bin/perl
+# PODNAME: tapper-testsuite-hwtrack
+# ABSTRACT: cmdline frontend to Tapper::TestSuite::HWTrack
 
 use Tapper::TestSuite::HWTrack;
 use Log::Log4perl;
