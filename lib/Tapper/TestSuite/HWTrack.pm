@@ -11,7 +11,7 @@ package Tapper::TestSuite::HWTrack;
 
 1;
 
-=head1 ABOUT
+=head1 DESCRIPTION
 
 HWTrack calls the tool lshw, parses its input and sends it to the
 report framework.
